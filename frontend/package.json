@@ -5,11 +5,12 @@
   "main": "./app",
   "scripts": {
     "build": "webpack -p",
-    "run":"webpack-dev-server --inline --hot --port 8081"
+    "run": "webpack-dev-server --inline --hot --port 8081"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "moment": "^2.20.1",
     "webpack": "1.12.9",
     "webpack-dev-server": "1.14.0"
   }

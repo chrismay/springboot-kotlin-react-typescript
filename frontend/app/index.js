@@ -1,4 +1,5 @@
 var greeter = require('./greeter');
+var moment = require('moment');
 
 var greeting = greeter.greet();
 
@@ -9,9 +10,10 @@ if (typeof document !== 'undefined') {
   fetch(apiEndpoint + '/webpack').then(function(response) { 
     return response.json();
   }).then(function(obj) {
-    el.innerHTML = greeting + '<br>' + obj.content + '<br>At ' + obj.time;
+    el.innerHTML = greeting + '<br>' + obj.content + '<br>At ' + moment.utc(obj.time).format('MMMM Do YYYY, h:mm:ss a');
     document.body.appendChild(el);
   }).catch(function(err) {
+    console.error(err)  
     el.innerHTML = 'oh no…';
     document.body.appendChild(el);
   });
