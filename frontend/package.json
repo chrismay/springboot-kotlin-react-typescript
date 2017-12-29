@@ -1,0 +1,16 @@
+{
+  "name": "fe",
+  "version": "0.0.1-SNAPSHOT",
+  "description": "",
+  "main": "./app",
+  "scripts": {
+    "build": "webpack -p",
+    "run":"webpack-dev-server --inline --hot --port 8081"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "1.12.9",
+    "webpack-dev-server": "1.14.0"
+  }
+}
