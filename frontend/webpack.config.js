@@ -5,7 +5,7 @@ var webpack = require('webpack');
 const PATHS = {
   build: path.join(__dirname, 'target', 'classes', 'META-INF', 'resources', 'webjars', packageJSON.name, packageJSON.version)
 };
-
+/* 
 module.exports = {
   entry: './app/index.js',
 
@@ -15,3 +15,22 @@ module.exports = {
     filename: 'app-bundle.js'
   }
 };
+*/
+module.exports = {
+    entry: "./src/index.tsx",
+    output: {
+        path: PATHS.build,
+        publicPath: '/assets/',
+        filename: 'app-bundle.js'
+      },
+    resolve: {
+        // Add '.ts' and '.tsx' as a resolvable extension.
+        extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
+    },
+    module: {
+        loaders: [
+            // all files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'
+            { test: /\.tsx?$/, loader: "ts-loader" }
+        ]
+    }
+}
