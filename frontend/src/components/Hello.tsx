@@ -2,14 +2,33 @@ import * as React from "react";
 import { Greeting } from "./greetings";
 import * as moment from "moment";
 
-export interface HelloProps { greet: Greeting; }
+export interface HelloProps { fetchGreeting: () => Promise<Greeting>; }
+interface HelloState { greeting: Greeting|null; }
 
-export const Hello = (props: HelloProps) => <h1>{props.greet.content}, it is {dateToString(props)}! </h1>;
+export class Hello extends React.Component {
 
-function dateToString(props: HelloProps): String {
-    return moment(epoch(props)).format('MMMM Do YYYY, h:mm:ss a')
+    state: HelloState;
+    props: HelloProps;
+
+    constructor(props: HelloProps) {
+        super(props);
+        this.state = { greeting: null }
+    }
+
+    async componentDidMount() {
+        const g = await this.props.fetchGreeting();
+        this.setState({"greeting":g});
+    }
+    
+    render() {
+        if (this.state.greeting == null) {
+            return <span />;
+        } else {
+            return <h1>{this.state.greeting.content}, it is {dateToString(this.state.greeting)}! </h1>
+        }
+    }
 }
 
-function epoch(props: HelloProps): number {
-    return props.greet.time * 1000;
+function dateToString(greet: Greeting): String {
+    return moment(greet.time * 1000).format('MM Do YY, h:mm:ss a')
 }
