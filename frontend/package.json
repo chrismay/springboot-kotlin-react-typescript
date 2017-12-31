@@ -19,8 +19,10 @@
     "webpack-dev-server": "1.14.0"
   },
   "dependencies": {
+    "@types/material-ui": "^0.20.1",
     "@types/react": "^16.0.31",
     "@types/react-dom": "^16.0.3",
+    "material-ui": "^0.20.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   }
