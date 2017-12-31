@@ -5,6 +5,6 @@ import { Hello } from "./components/Hello";
 import { fetchGreeting } from "./components/greetings";
 
 ReactDOM.render(
-    <Hello fetchGreeting={() => fetchGreeting()} />,
+    <Hello fetchGreeting={fetchGreeting} />,
     document.getElementById("example")
 );

@@ -1,12 +1,8 @@
 
-export function fetchGreeting(): Promise<Greeting> {
-    const apiEndpoint = 'http://localhost:8080/api/hello';
-    return  fetch(apiEndpoint + '/webpack').then(function(response) { 
-        return response.json();
-    });
-};
+export type GreetingProvider = () => Promise<Greeting>;
+export const fetchGreeting: GreetingProvider = () => fetch('http://localhost:8080/api/hello/webpack').then(r => r.json());
 
 export interface Greeting {
-    content:String,
-    time:number
+    content: String,
+    time: number
 }
