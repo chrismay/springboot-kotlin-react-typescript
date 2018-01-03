@@ -1,4 +1,4 @@
-package hello
+package demoapp
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Assert.*
