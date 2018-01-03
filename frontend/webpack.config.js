@@ -7,12 +7,15 @@ const PATHS = {
 };
 
 module.exports = {
-    entry: "./src/index.tsx",
+    entry: {
+        helloworld: "./src/hello-index.tsx",
+        gallery: "./src/gallery-index.tsx"
+    },
     devtool: "source-map",
     output: {
         path: PATHS.build,
         publicPath: '/assets/',
-        filename: 'app-bundle.js'
+        filename: '[name]-bundle.js'
       },
     resolve: {
         // Add '.ts' and '.tsx' as a resolvable extension.

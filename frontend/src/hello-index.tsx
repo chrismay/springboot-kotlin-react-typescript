@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { App } from "./components/App";
+import { HelloApp } from "./components/HelloApp";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 function onSubmit(name: string) {
@@ -10,7 +10,7 @@ function onSubmit(name: string) {
 
 ReactDOM.render(
     <MuiThemeProvider>
-        <App />
+        <HelloApp />
     </MuiThemeProvider>,
     document.getElementById("example")
 );

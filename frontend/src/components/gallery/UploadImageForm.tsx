@@ -3,18 +3,18 @@ import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton';
 import { FormEvent } from "react";
 
-interface NameState {
+interface UploadFormState {
     name: string;
 }
-export interface NameFormProps {
+export interface UploadFormProps {
     onSubmit(name: string):void
 }
-export class NameForm extends React.Component {
+export class UploadImageForm extends React.Component {
 
-    state: NameState = { name: "" };
-    props: NameFormProps;
+    state: UploadFormState = { name: "" };
+    props: UploadFormProps;
    
-    constructor(props: NameFormProps) {
+    constructor(props: UploadFormProps) {
         super(props);
     }
 
@@ -39,7 +39,7 @@ export class NameForm extends React.Component {
             />
             </div>
             <div>
-            <RaisedButton label="Greet" />
+            <RaisedButton label="Upload" />
             </div>    
         </form>);
     }

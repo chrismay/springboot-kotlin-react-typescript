@@ -6,7 +6,7 @@ import { HelloBanner } from "./HelloBanner";
 interface AppProps { }
 interface AppState { greeting?: Greeting; }
 
-export class App extends React.Component {
+export class HelloApp extends React.Component {
 
     state: AppState;
 
