@@ -1,46 +1,80 @@
 import * as React from "react";
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton';
+import { UploadPreview } from './UploadPreview';
 import { FormEvent } from "react";
+import {Image} from "./Image"
 
-interface UploadFormState {
+export interface UploadFormState {
     name: string;
+    desc: string;
+    picture?: string;
 }
+
 export interface UploadFormProps {
-    onSubmit(name: string):void
+    onSubmit(image:Image): void
 }
+
 export class UploadImageForm extends React.Component {
 
-    state: UploadFormState = { name: "" };
+    state: UploadFormState = { name: "", desc: ""};
     props: UploadFormProps;
-   
+
     constructor(props: UploadFormProps) {
         super(props);
     }
 
-    handleNameChange = (event: React.FormEvent<HTMLInputElement>, newValue: string) =>
-        this.setState({ name: event.currentTarget.value });
+    handleDescChange = (event: React.FormEvent<HTMLInputElement>, newValue: string) =>
+        this.mergeState({ desc: newValue });
 
-    handleSubmit = (e: FormEvent<HTMLFormElement>) =>{
-        e.preventDefault();    
-        this.props.onSubmit(this.state.name);
+    handleNameChange = (event: React.FormEvent<HTMLInputElement>, newValue: string) =>
+        this.mergeState({ name: newValue });
+
+    handleFileUpload = (data:string ) =>{
+            this.mergeState({picture: data});    
     }
-    
+        
+    handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        this.props.onSubmit({
+            owner: this.state.name,
+            description: this.state.desc,
+            data: this.state.picture || ""
+        });
+    }
+
+    private mergeState = (newState:({picture:string}|{desc:string}|{name:String})) => {
+        this.setState(Object.assign({}, this.state, newState));
+    }
 
     render() {
-        return (<form onSubmit = {this.handleSubmit}>
+        return (
+        <form onSubmit={this.handleSubmit}>
             <div>
-            <TextField
-                id="name"
-                floatingLabelText="name"
-                floatingLabelFixed
-                value={this.state.name}
-                onChange={this.handleNameChange}
-            />
+                <TextField
+                    id="name"
+                    floatingLabelText="your name"
+                    floatingLabelFixed
+                    value={this.state.name}
+                    onChange={this.handleNameChange}
+                />
             </div>
             <div>
-            <RaisedButton label="Upload" />
-            </div>    
+                <TextField
+                    id="description"
+                    floatingLabelText="description"
+                    floatingLabelFixed
+                    value={this.state.desc}
+                    onChange={this.handleDescChange}
+                />
+            </div>
+            <div>
+              <p/>
+            </div>
+            <UploadPreview onFileDataLoaded = {this.handleFileUpload} />    
+            <div>
+                <RaisedButton type="submit" label="Upload" />
+            </div>
         </form>);
     }
 }
